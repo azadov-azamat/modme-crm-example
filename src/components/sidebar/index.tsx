@@ -1,4 +1,4 @@
-import React, {createElement} from 'react';
+import {createElement} from 'react';
 import {CabinetNavigation} from "../../config/navigation";
 import {Link, useLocation} from "react-router-dom";
 import {Card, Tooltip} from "@material-tailwind/react";

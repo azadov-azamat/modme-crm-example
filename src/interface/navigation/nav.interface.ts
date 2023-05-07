@@ -1,7 +1,8 @@
+import React from "react";
+
 export interface CabinetNavigationProps {
     id: number,
     title: string;
-    icon: any;
-    navLink?: string;
-    nav?: CabinetNavigationProps[]
+    icon: React.ReactElement<HTMLOrSVGImageElement>;
+    navLink: string;
 }

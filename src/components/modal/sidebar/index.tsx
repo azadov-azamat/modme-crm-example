@@ -12,7 +12,7 @@ export default function SidebarModal({children, open, title, toggle}: SidebarMod
         <div className={"w-full h-screen fixed right-0 top-0 z-50 bg-black/50"}>
             <div id="drawer-example"
                  className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-4/5 bg-white w-80 dark:bg-gray-800`}
-                 tabIndex="-1" aria-labelledby="drawer-label">
+                 aria-labelledby="drawer-label">
                 <h5 id="drawer-label"
                     className="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
                     <svg className="w-5 h-5 mr-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"

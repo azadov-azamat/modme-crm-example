@@ -64,7 +64,7 @@ const TABLE_ROWS = [
 
 export default function Active() {
     return (
-        <Card className="h-auto w-2/5">
+        <Card className="h-auto w-3/5">
             <CardBody className="overflow-scroll px-0">
                 <table className="w-full min-w-max table-auto text-left">
                     <thead>

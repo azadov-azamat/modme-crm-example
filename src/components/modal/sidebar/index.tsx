@@ -38,5 +38,7 @@ export default function SidebarModal({children, open, title, toggle}: SidebarMod
                 </div>
             </div>
         </div>
-    ) : "";
+    ) : <div>
+
+    </div>;
 }

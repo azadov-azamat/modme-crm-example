@@ -1,13 +1,15 @@
 import {
     AcademicCapIcon,
     ArrowDownTrayIcon,
-    CodeBracketIcon,
-    Cog6ToothIcon, ComputerDesktopIcon,
-    HomeIcon, UserGroupIcon,
+    Cog6ToothIcon,
+    ComputerDesktopIcon,
+    HomeIcon,
+    UserGroupIcon,
     UsersIcon
 } from "@heroicons/react/24/outline";
+import {CabinetNavigationProps} from "../interface/navigation/nav.interface";
 
-export const CabinetNavigation = [
+export const CabinetNavigation: CabinetNavigationProps[] = [
     {
         id: 1,
         title: 'Bosh sahifa',

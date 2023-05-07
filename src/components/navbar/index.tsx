@@ -9,11 +9,11 @@ import {
     LifebuoyIcon,
     MagnifyingGlassIcon,
     PowerIcon,
-    SquaresPlusIcon,
     UserCircleIcon,
 } from "@heroicons/react/24/outline";
 import {useNavigate} from "react-router-dom";
 import toggleFullScreen from "../../config/constants";
+import SquaresPlusIconComponent from "../squares-plus-icon";
 
 export default function NavbarComponent() {
 
@@ -52,7 +52,7 @@ export default function NavbarComponent() {
 
     function ProfileMenu() {
         const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-        const closeMenu = () => setIsMenuOpen(false);
+        // const closeMenu = () => setIsMenuOpen(false);
 
         return (
             <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -111,14 +111,14 @@ export default function NavbarComponent() {
     }
 
     return (
-        <nav className={"fixed z-40 bg-white w-full h-20 py-4 px-8 flex justify-between items-center border shadow-md"}>
-            <div className="search w-80">
+        <nav className={"fixed z-40 bg-white w-full sm:h-20 h-16 py-2 px-2 md:px-8 flex justify-between items-center border shadow-md"}>
+            <div className="search w-80 md:flex hidden">
                 <Input className={'rounded rounded-full'} label="Qidiruv" icon={createElement(MagnifyingGlassIcon, {
                     className: `w-5`,
                     strokeWidth: 2,
                 })}/>
             </div>
-            <div className="logo w-auto h-20 py-4">
+            <div className="logo w-auto sm:h-20 h-14 sm:py-4 py-2">
                 <img
                     className="h-full w-full"
                     src="https://teachapply.com/demo/images/Demo-School-4.png"
@@ -127,14 +127,11 @@ export default function NavbarComponent() {
             </div>
             <div className="navigation p-4 flex gap-5">
                 <div className="flex items-center gap-2">
-                    {createElement(SquaresPlusIcon, {
-                        className: `w-6 cursor-pointer`,
-                        strokeWidth: 1,
-                    })}
+                    <SquaresPlusIconComponent/>
                     {createElement(!screen ? ArrowsPointingOutIcon : ArrowsPointingInIcon, {
-                        className: `w-6 cursor-pointer`,
+                        className: `w-6 cursor-pointer hidden md:flex`,
                         strokeWidth: 1,
-                        onClick: ()=> {
+                        onClick: () => {
                             toggleScreen()
                             toggleFullScreen()
                         }

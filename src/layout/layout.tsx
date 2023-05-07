@@ -1,7 +1,6 @@
 import {LayoutProps} from "./layout.props";
 import Sidebar from "../components/sidebar";
 import NavbarComponent from "../components/navbar";
-import FooterComponent from "../components/footer";
 
 function Layout({children}: LayoutProps): JSX.Element {
 
@@ -10,9 +9,9 @@ function Layout({children}: LayoutProps): JSX.Element {
             <NavbarComponent/>
             <div className="flex w-full h-screen">
                 <Sidebar/>
-                <main className={'sm:ml-32 mt-24 transition-transform duration-500 h-[1220px]'}>{children}</main>
+                <main className={'md:ml-40 ml-24 sm:mt-20 mt-16 transition-transform duration-500 w-full px-4 pt-4 h-[1220px]'}>{children}</main>
             </div>
-            <FooterComponent/>
+            {/*<FooterComponent/>*/}
         </div>
     );
 }

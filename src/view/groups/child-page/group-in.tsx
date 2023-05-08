@@ -26,7 +26,7 @@ import {
 import qs from "qs"
 import {ProfileMenuProps, StudentsTableProps} from "../../../interface/groups/groups-in.interface"
 import AttendanceComponent from "../../../components/attendance"
-import DiscountsComponent from "../../../components/discounts";
+import DiscountsComponent from "../../../components/discounts"
 
 export default function GroupIn(): JSX.Element {
 

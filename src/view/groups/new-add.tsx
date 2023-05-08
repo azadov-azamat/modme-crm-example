@@ -1,20 +1,14 @@
 import SidebarModal from "../../components/modal/sidebar";
 import React from "react";
 import {Button, Input, Option, Select} from "@material-tailwind/react";
+import {mockCourse} from "../../mock/data";
 
 interface NewAddComponentProps {
     open: boolean;
     toggle: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function NewAdd({toggle, open}: NewAddComponentProps) {
-
-    const courseList = [
-        {id: 1, name: "SMM", value: "smm"},
-        {id: 1, name: "Motion grafika", value: "motion_graphic"},
-        {id: 1, name: "3D's MAX", value: "3d_max"},
-        {id: 1, name: "Rus tili", value: "russion"}
-    ]
+export default function NewGroupAdd({toggle, open}: NewAddComponentProps) {
 
     const teacherList = [
         {id: 1, name: "Ms. Ezoza"},
@@ -41,8 +35,8 @@ export default function NewAdd({toggle, open}: NewAddComponentProps) {
                 <Input name={'name'} size="lg" label="Nomi"/>
                 <Select variant="outlined" label="Kursni tanlang">
                     {
-                        courseList.map(({value, id, name}) =>
-                            <Option key={id} value={value}>{name}</Option>
+                        mockCourse.map(({id, name}) =>
+                            <Option key={id} value={id.toString()}>{name}</Option>
                         )
                     }
                 </Select>

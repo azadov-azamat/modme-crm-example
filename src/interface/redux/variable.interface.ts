@@ -5,6 +5,13 @@ export interface InitialStateProps {
     students: studentProps[]
 }
 
+export interface coursesProps {
+    id: number;
+    name: string;
+    price: string;
+    child?: coursesProps[] | null;
+}
+
 export interface groupsProps {
     id: string;
     name: string;

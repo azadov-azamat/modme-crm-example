@@ -1,4 +1,4 @@
-import {groupsProps, studentProps} from "../interface/redux/variable.interface";
+import {coursesProps, groupsProps, studentProps} from "../interface/redux/variable.interface";
 
 export const mockStudents: studentProps[] = [
         {
@@ -262,5 +262,56 @@ export const mockGroups: groupsProps[] = [
         startDate: "25/01/2023",
         finalDate: "25/04/2023",
         students: mockStudents.filter(item => item.groupId === "11523")
+    }
+]
+
+export const mockCourse: coursesProps[] = [
+    {
+        id: 1,
+        name: "Targetolog",
+        price: "900 000",
+        child: null
+    },
+    {
+        id: 2,
+        name: "Web",
+        price: "100 000",
+        child: null
+    },
+    {
+        id: 3,
+        name: "Web site qilish",
+        price: "400 000",
+        child: null
+    },
+    {
+        id: 4,
+        name: "English beginner",
+        price: "500 000",
+        child: null
+    },
+    {
+        id: 5,
+        name: "Rus tili",
+        price: "400 000",
+        child: null
+    },
+    {
+        id: 6,
+        name: "SMM",
+        price: "200 000",
+        child: null
+    },
+    {
+        id: 7,
+        name: "3D's MAX",
+        price: "800 000",
+        child: null
+    },
+    {
+        id: 8,
+        name: "Web",
+        price: "400 000",
+        child: null
     }
 ]

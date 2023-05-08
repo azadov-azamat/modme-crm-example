@@ -1,7 +1,7 @@
 import {Button, Card, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography,} from "@material-tailwind/react";
 import Archive from "./archive";
 import Active from "./active";
-import NewAddComponent from "./new-add";
+import NewGroupAddComponent from "./new-add";
 import {useState} from "react";
 
 export default function Groups() {
@@ -23,8 +23,8 @@ export default function Groups() {
     ];
 
     return (
-        <Card className={"p-3 gap-3"}>
-            <div className="w-full h-auto flex justify-between items-center">
+        <div className={'flex flex-col gap-3 p-3'}>
+            <div className="w-full p-3 h-auto flex justify-between items-center border-b-2 border-white">
                 <Typography
                     variant="h4"
                 >
@@ -32,23 +32,25 @@ export default function Groups() {
                 </Typography>
                 <Button onClick={toggle}>Yangisini qo'shish</Button>
             </div>
-            <Tabs value="active">
-                <TabsHeader>
-                    {data.map(({label, value}) => (
-                        <Tab key={value} value={value}>
-                            {label}
-                        </Tab>
-                    ))}
-                </TabsHeader>
-                <TabsBody>
-                    {data.map(({value, desc}) => (
-                        <TabPanel key={value} value={value}>
-                            {desc}
-                        </TabPanel>
-                    ))}
-                </TabsBody>
-            </Tabs>
-            <NewAddComponent open={open} toggle={toggle}/>
-        </Card>
+            <Card className={"gap-3 p-3"}>
+                <Tabs value="active">
+                    <TabsHeader>
+                        {data.map(({label, value}) => (
+                            <Tab key={value} value={value}>
+                                {label}
+                            </Tab>
+                        ))}
+                    </TabsHeader>
+                    <TabsBody>
+                        {data.map(({value, desc}) => (
+                            <TabPanel key={value} value={value}>
+                                {desc}
+                            </TabPanel>
+                        ))}
+                    </TabsBody>
+                </Tabs>
+                <NewGroupAddComponent open={open} toggle={toggle}/>
+            </Card>
+        </div>
     );
 }

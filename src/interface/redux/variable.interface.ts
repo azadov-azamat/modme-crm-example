@@ -25,4 +25,5 @@ export interface studentProps {
     name: string;
     phone: string;
     groupId: string;
+    balance: string;
 }

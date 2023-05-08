@@ -2,10 +2,17 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {groupsProps, studentProps} from "../../../interface/redux/variable.interface";
-import {IconButton, Tooltip, Typography} from "@material-tailwind/react";
-import {PencilIcon, TrashIcon} from "@heroicons/react/24/outline";
+import {groupsProps} from "../../../interface/redux/variable.interface";
+import {IconButton, Menu, MenuHandler, MenuItem, MenuList, Typography} from "@material-tailwind/react";
+import {
+    EllipsisHorizontalCircleIcon,
+    PauseIcon,
+    PencilIcon,
+    TrashIcon,
+    UserCircleIcon
+} from "@heroicons/react/24/outline";
 import qs from "qs"
+import {ProfileMenuProps, StudentsTableProps} from "./groups-in.interface";
 
 export default function GroupIn(): JSX.Element {
 
@@ -15,15 +22,11 @@ export default function GroupIn(): JSX.Element {
 
     const [currentObj, setCurrentObj] = useState<groupsProps>()
 
-    console.log(query)
-
     useEffect(() => {
-        if (query?.id) {
-            setCurrentObj(groups.find(item => item.id === query.id))
+        if (query) {
+            setCurrentObj(groups?.find(item => item?.id === query?.id))
         }
     }, [location])
-
-    console.log(currentObj)
 
     return (
         <div className={"p-3 flex flex-col gap-3"}>
@@ -40,7 +43,7 @@ export default function GroupIn(): JSX.Element {
                 <div className="card-group flex flex-col w-1/3 h-auto border bg-white shadow-lg p-4 gap-3">
                     <div className="card-title flex justify-between items-center">
                         <Typography
-                            variant="span"
+                            variant="h6"
                             className="font-normal"
                             color={"inherit"}
                         >
@@ -48,10 +51,10 @@ export default function GroupIn(): JSX.Element {
                         </Typography>
                         <div className="flex gap-3 items-center">
                             <IconButton variant="text" color="blue-gray">
-                                <PencilIcon className="h-4 w-4"/>
+                                <PencilIcon className="w-5"/>
                             </IconButton>
                             <IconButton variant="text" color="blue-gray">
-                                <TrashIcon className="h-4 w-4"/>
+                                <TrashIcon className="w-5"/>
                             </IconButton>
                         </div>
                     </div>
@@ -81,10 +84,6 @@ export default function GroupIn(): JSX.Element {
     );
 }
 
-interface StudentsTableProps {
-    students: studentProps[] | undefined
-}
-
 function StudentTable({students}: StudentsTableProps): JSX.Element {
 
     const TABLE_HEAD = ["Name", "phone", "action"];
@@ -108,15 +107,13 @@ function StudentTable({students}: StudentsTableProps): JSX.Element {
             </thead>
             <tbody>
             {students?.map(
-                ({name, phone}, index) => {
+                ({name, phone, balance}, index) => {
                     const classes = "p-1 border-b border-blue-gray-50";
 
                     return (
                         <tr key={index}>
                             <td className={classes}>
-                                <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {name}
-                                </Typography>
+                                <ProfileMenu name={name} balance={balance} phone={phone}/>
                             </td>
                             <td className={classes}>
                                 <Typography variant="small" color="blue-gray" className="font-normal">
@@ -124,11 +121,7 @@ function StudentTable({students}: StudentsTableProps): JSX.Element {
                                 </Typography>
                             </td>
                             <td className={classes}>
-                                <Tooltip content="O'zgartirish kiritish">
-                                    <IconButton variant="text" color="blue-gray">
-                                        <PencilIcon className="h-4 w-4"/>
-                                    </IconButton>
-                                </Tooltip>
+                                <StudentListAction/>
                             </td>
                         </tr>
                     );
@@ -137,4 +130,67 @@ function StudentTable({students}: StudentsTableProps): JSX.Element {
             </tbody>
         </table>
     )
+}
+
+
+function ProfileMenu({name, balance, phone}: ProfileMenuProps) {
+    return (
+        <Menu placement={"right"}>
+            <MenuHandler>
+                <span className={"cursor-pointer"}>{name}</span>
+            </MenuHandler>
+            <MenuList className="flex flex-col items-center gap-2">
+                <MenuItem>
+                    <div className="flex items-center gap-2">
+                        <UserCircleIcon width={30}/>
+                        <div className="flex flex-col items-start">
+                            <h4 className={'font-bold'}>{name}</h4>
+                            <span className={'text-xs'}>Holati o'zgartirilgan</span>
+                        </div>
+                    </div>
+                </MenuItem>
+                <hr className={'font-bold w-full'}/>
+                <MenuItem className={"cursor-default"}>
+                    <div className="flex flex-col gap-1">
+                        <span className={"text-xs"}>Telefon</span>
+                        <p>{phone}</p>
+                    </div>
+                </MenuItem>
+                <hr className={'font-bold w-full'}/>
+                <MenuItem className={"cursor-default"}>
+                    <div className="flex flex-col gap-1">
+                        <span className={"text-xs"}>Balans</span>
+                        <p>{balance} UZS</p>
+                    </div>
+                </MenuItem>
+            </MenuList>
+        </Menu>
+    );
+}
+
+function StudentListAction() {
+    return (
+        <Menu placement={"right"}>
+            <MenuHandler>
+                <IconButton variant="text" color="blue-gray">
+                    <EllipsisHorizontalCircleIcon className="w-6"/>
+                </IconButton>
+            </MenuHandler>
+            <MenuList className="flex flex-col items-center gap-2">
+                <MenuItem>
+                    <div className="flex items-center gap-2">
+                        <PauseIcon width={20}/>
+                        <span className={'text-xs'}>Muzlash</span>
+                    </div>
+                </MenuItem>
+                <hr className={'font-bold w-full'}/>
+                <MenuItem className={"cursor-default"}>
+                    <div className="flex items-center gap-2">
+                        <TrashIcon width={20}/>
+                        <span className={"text-xs"}>Guruhdan olib tashlash</span>
+                    </div>
+                </MenuItem>
+            </MenuList>
+        </Menu>
+    );
 }

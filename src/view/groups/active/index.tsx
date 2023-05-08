@@ -1,68 +1,17 @@
 import {PencilIcon} from "@heroicons/react/24/solid";
 import {Button, Card, CardBody, CardFooter, IconButton, Tooltip, Typography,} from "@material-tailwind/react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../redux/store";
 
 const TABLE_HEAD = ["Id", "Name", "Teacher", "Time", "Days", "action"];
 
-const TABLE_ROWS = [
-    {
-        id: "11581",
-        name: "Rus tili",
-        teacher: "Malika Sh.",
-        time: "3:30pm",
-        days: "Boshqa",
-    },
-    {
-        id: "11580",
-        name: "SMM",
-        teacher: "Ms. Ezoza",
-        time: "3:30pm",
-        days: "Boshqa",
-    },
-    {
-        id: "...",
-        name: "3D's MAX",
-        teacher: "Mr. Sherzod",
-        time: "4:00pm",
-        days: "Boshqa",
-    },
-    {
-        id: "team",
-        name: "Motion Grafika",
-        teacher: "Ms. Ezoza",
-        time: "11:00am",
-        days: "Boshqa",
-    },
-    {
-        id: "team",
-        name: "Motion Grafika",
-        teacher: "Ms. Ezoza",
-        time: "11:00am",
-        days: "Boshqa",
-    },
-    {
-        id: "11532",
-        name: "Arab tili",
-        teacher: "Mr. Ismoil",
-        time: "10:00am",
-        days: "Juft kunlar",
-    },
-    {
-        id: "Malika individual",
-        name: "3D's MAX",
-        teacher: "Mr. Sherzod",
-        time: "7:00pm",
-        days: "Boshqa",
-    },
-    {
-        id: "11523",
-        name: "3D's MAX",
-        teacher: "Mr. Sherzod",
-        time: "3:30pm",
-        days: "Boshqa",
-    }
-];
-
 export default function Active() {
+
+    const {pathname} = useLocation()
+    const navigate = useNavigate();
+    const {groups} = useSelector((state: RootState) => state.variables)
+
     return (
         <Card className="h-auto w-3/5">
             <CardBody className="overflow-scroll px-0">
@@ -83,13 +32,13 @@ export default function Active() {
                     </tr>
                     </thead>
                     <tbody>
-                    {TABLE_ROWS.map(
+                    {groups.filter(item => item.status).map(
                         ({teacher, id, time, days, name}, index) => {
-                            const isLast = index === TABLE_ROWS.length - 1;
+                            const isLast = index === groups.length - 1;
                             const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
                             return (
-                                <tr key={name}>
+                                <tr key={index}>
                                     <td className={classes}>
                                         <Typography variant="small" color="blue-gray" className="font-bold">
                                             {id}
@@ -117,7 +66,8 @@ export default function Active() {
                                     </td>
                                     <td className={classes}>
                                         <Tooltip content="O'zgartirish kiritish">
-                                            <IconButton variant="text" color="blue-gray">
+                                            <IconButton variant="text" color="blue-gray"
+                                                        onClick={() => navigate(`${pathname}/in?id=${id}`)}>
                                                 <PencilIcon className="h-4 w-4"/>
                                             </IconButton>
                                         </Tooltip>

@@ -6,6 +6,7 @@ import Groups from "../view/groups";
 import Lids from "../view/lids";
 import Settings from "../view/settings";
 import GroupIn from "../view/groups/child-page/group-in";
+import StudentIn from "../view/students/child-page/student-in";
 
 const groupRoutes = [
     {
@@ -13,6 +14,15 @@ const groupRoutes = [
         name: "group-in",
         path: "/groups/in",
         component: GroupIn
+    }
+]
+
+const studentRoutes = [
+    {
+        id: 51,
+        name: "group-in",
+        path: "/students/in",
+        component: StudentIn
     }
 ]
 export const routes = [
@@ -28,6 +38,7 @@ export const routes = [
         path: '/students',
         component: Students
     },
+    ...studentRoutes,
     {
         id: 3,
         name: 'teachers',

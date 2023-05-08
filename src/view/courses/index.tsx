@@ -1,8 +1,8 @@
 import {mockCourse} from "../../mock/data";
 import CourseCard from "../../components/card/course";
-import {Button, Typography} from "@material-tailwind/react";
 import {useState} from "react";
-import NewAddComponent from "./new-add";
+import NewCourseAddComponent from "./new-add";
+import PageTitle from "../../components/page-title";
 
 export default function Courses() {
 
@@ -11,21 +11,14 @@ export default function Courses() {
 
     return (
         <div className={"flex flex-col p-3 gap-3"}>
-            <div className="w-full p-3 h-auto flex justify-between items-center border-b-2 border-white">
-                <Typography
-                    variant="h4"
-                >
-                    Kurslar
-                </Typography>
-                <Button onClick={toggle}>Yangisini qo'shish</Button>
-            </div>
+            <PageTitle title={"Kurslar"} toggle={toggle} isNew={true}/>
 
             <div className="flex flex-wrap justify-between items-center gap-4">
                 {mockCourse.map(({name, price}, key) => {
                     return (<CourseCard sum={price} title={name} key={key}/>)
                 })}
             </div>
-            <NewAddComponent open={open} toggle={toggle}/>
+            <NewCourseAddComponent open={open} toggle={toggle}/>
         </div>
     );
 }

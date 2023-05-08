@@ -1,8 +1,9 @@
-import {Button, Card, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography,} from "@material-tailwind/react";
+import {Card, Tab, TabPanel, Tabs, TabsBody, TabsHeader,} from "@material-tailwind/react";
 import Archive from "./archive";
 import Active from "./active";
 import NewGroupAddComponent from "./new-add";
 import {useState} from "react";
+import PageTitle from "../../components/page-title";
 
 export default function Groups() {
 
@@ -24,14 +25,7 @@ export default function Groups() {
 
     return (
         <div className={'flex flex-col gap-3 p-3'}>
-            <div className="w-full p-3 h-auto flex justify-between items-center border-b-2 border-white">
-                <Typography
-                    variant="h4"
-                >
-                    Guruhlar
-                </Typography>
-                <Button onClick={toggle}>Yangisini qo'shish</Button>
-            </div>
+            <PageTitle title={"Guruhlar"} toggle={toggle} isNew={true}/>
             <Card className={"gap-3 p-3"}>
                 <Tabs value="active">
                     <TabsHeader>

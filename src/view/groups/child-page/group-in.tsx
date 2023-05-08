@@ -89,7 +89,7 @@ export default function GroupIn(): JSX.Element {
                         {currentObj?.name + " * " + currentObj?.teacher}
                     </p>
                     <div className="flex flex-col text-sm">
-                        <span>pricei: <b>{currentObj?.price}</b></span>
+                        <span>Narxi: <b>{currentObj?.price}</b></span>
                         <span>Kunlar: <b>{currentObj?.days}</b></span>
                     </div>
                     <div className="flex flex-col text-sm">

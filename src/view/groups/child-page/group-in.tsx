@@ -1,18 +1,32 @@
-import {useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
-import {useLocation} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {groupsProps} from "../../../interface/redux/variable.interface";
-import {IconButton, Menu, MenuHandler, MenuItem, MenuList, Typography} from "@material-tailwind/react";
+import {useSelector} from "react-redux"
+import {RootState} from "../../../redux/store"
+import {useLocation} from "react-router-dom"
+import {useEffect, useState} from "react"
+import {groupsProps} from "../../../interface/redux/variable.interface"
+import {
+    IconButton,
+    Menu,
+    MenuHandler,
+    MenuItem,
+    MenuList,
+    Tab,
+    TabPanel,
+    Tabs,
+    TabsBody,
+    TabsHeader,
+    Typography
+} from "@material-tailwind/react"
 import {
     EllipsisHorizontalCircleIcon,
     PauseIcon,
     PencilIcon,
     TrashIcon,
     UserCircleIcon
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/24/outline"
 import qs from "qs"
-import {ProfileMenuProps, StudentsTableProps} from "./groups-in.interface";
+import {ProfileMenuProps, StudentsTableProps} from "../../../interface/groups/groups-in.interface"
+import AttendanceComponent from "../../../components/attendance"
+import DiscountsComponent from "../../../components/discounts";
 
 export default function GroupIn(): JSX.Element {
 
@@ -28,6 +42,19 @@ export default function GroupIn(): JSX.Element {
         }
     }, [location])
 
+    const data = [
+        {
+            label: "Davomat",
+            value: "davomat",
+            desc: <AttendanceComponent students={currentObj?.students}/>,
+        },
+        {
+            label: "Chegirmalar",
+            value: "aksiya",
+            desc: <DiscountsComponent students={currentObj?.students}/>,
+        }
+    ]
+
     return (
         <div className={"p-3 flex flex-col gap-3"}>
             <div className="w-full">
@@ -39,8 +66,8 @@ export default function GroupIn(): JSX.Element {
                     {currentObj?.id + " * " + currentObj?.name + " * " + currentObj?.teacher}
                 </Typography>
             </div>
-            <div className="w-full">
-                <div className="card-group flex flex-col w-1/3 h-auto border bg-white shadow-lg p-4 gap-3">
+            <div className="w-full flex flex-col md:flex-row gap-4">
+                <div className="card-group flex flex-col w-full md:w-1/3 h-auto border bg-white shadow-lg p-4 gap-3">
                     <div className="card-title flex justify-between items-center">
                         <Typography
                             variant="h6"
@@ -62,7 +89,7 @@ export default function GroupIn(): JSX.Element {
                         {currentObj?.name + " * " + currentObj?.teacher}
                     </p>
                     <div className="flex flex-col text-sm">
-                        <span>Narxi: <b>{currentObj?.narx}</b></span>
+                        <span>pricei: <b>{currentObj?.price}</b></span>
                         <span>Kunlar: <b>{currentObj?.days}</b></span>
                     </div>
                     <div className="flex flex-col text-sm">
@@ -76,17 +103,32 @@ export default function GroupIn(): JSX.Element {
                     <hr/>
                     <StudentTable students={currentObj?.students}/>
                 </div>
-                <div className="">
-
+                <div className="w-full">
+                    <Tabs value="davomat">
+                        <TabsHeader>
+                            {data.map(({label, value}) => (
+                                <Tab key={value} value={value}>
+                                    {label}
+                                </Tab>
+                            ))}
+                        </TabsHeader>
+                        <TabsBody>
+                            {data.map(({value, desc}) => (
+                                <TabPanel key={value} value={value}>
+                                    {desc}
+                                </TabPanel>
+                            ))}
+                        </TabsBody>
+                    </Tabs>
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 function StudentTable({students}: StudentsTableProps): JSX.Element {
 
-    const TABLE_HEAD = ["Name", "phone", "action"];
+    const TABLE_HEAD = ["Name", "phone", "action"]
 
     return (
         <table className="w-full min-w-max table-auto text-left">
@@ -108,7 +150,7 @@ function StudentTable({students}: StudentsTableProps): JSX.Element {
             <tbody>
             {students?.map(
                 ({name, phone, balance}, index) => {
-                    const classes = "p-1 border-b border-blue-gray-50";
+                    const classes = "p-1 border-b border-blue-gray-50"
 
                     return (
                         <tr key={index}>
@@ -124,14 +166,13 @@ function StudentTable({students}: StudentsTableProps): JSX.Element {
                                 <StudentListAction/>
                             </td>
                         </tr>
-                    );
+                    )
                 },
             )}
             </tbody>
         </table>
     )
 }
-
 
 function ProfileMenu({name, balance, phone}: ProfileMenuProps) {
     return (
@@ -165,7 +206,7 @@ function ProfileMenu({name, balance, phone}: ProfileMenuProps) {
                 </MenuItem>
             </MenuList>
         </Menu>
-    );
+    )
 }
 
 function StudentListAction() {
@@ -192,5 +233,5 @@ function StudentListAction() {
                 </MenuItem>
             </MenuList>
         </Menu>
-    );
+    )
 }

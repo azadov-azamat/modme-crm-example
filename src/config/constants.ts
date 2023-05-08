@@ -5,7 +5,7 @@ import Courses from "../view/courses";
 import Groups from "../view/groups";
 import Lids from "../view/lids";
 import Settings from "../view/settings";
-import GroupIn from "../view/groups/components/group-in";
+import GroupIn from "../view/groups/child-page/group-in";
 
 const groupRoutes = [
     {

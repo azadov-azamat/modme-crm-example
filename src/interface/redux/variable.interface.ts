@@ -12,7 +12,7 @@ export interface groupsProps {
     time: string;
     status: boolean;
     days: string;
-    narx: string;
+    price: string;
     room: string;
     startTime: string;
     startDate: string;

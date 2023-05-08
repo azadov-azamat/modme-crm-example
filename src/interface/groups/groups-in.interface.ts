@@ -1,4 +1,4 @@
-import {studentProps} from "../../../interface/redux/variable.interface";
+import {studentProps} from "../redux/variable.interface";
 
 export interface StudentsTableProps {
     students: studentProps[] | undefined

@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Dictionary} from "../../helpers/enumuration/dictionary";
 import i18n from "i18next";
 import {InitialStateProps} from "../../interface/redux/variable.interface";
-import {mockEmployees, mockGroups, mockRooms, mockStudents, mockSystemRoles} from "../../mock/data";
+import {mockEmployees, mockGroups, mockRooms, mockSmsTemplate, mockStudents, mockSystemRoles} from "../../mock/data";
 
 const initialState: InitialStateProps = {
     lang: localStorage.getItem('i18nextLng') || 'ru',
@@ -12,7 +12,8 @@ const initialState: InitialStateProps = {
     studentGroup: null,
     employees: mockEmployees,
     roles: mockSystemRoles,
-    rooms: mockRooms
+    rooms: mockRooms,
+    smsTemplates: mockSmsTemplate
 }
 
 const reducers = {

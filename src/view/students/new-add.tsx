@@ -30,8 +30,8 @@ export default function NewStudentAddComponent({toggle, open, student}: NewStude
                 <Input name={'name'} size="lg" label="Ismi" defaultValue={student?.name}/>
                 <Input name={'birthdate'} type={"date"} size="lg" label="Tug'ilgan sanasi"/>
                 <div className="flex">
-                    <Radio id="man" name="type" label="Erkak" defaultChecked/>
-                    <Radio id="woman" name="type" label="Ayol"/>
+                    <Radio id="man" name="type" label="Erkak" defaultChecked={student?.gender}/>
+                    <Radio id="woman" name="type" label="Ayol" defaultChecked={!student?.gender}/>
                 </div>
                 <Textarea label="Tavsif"/>
                 <div className="btn w-full flex justify-start">

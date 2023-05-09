@@ -88,8 +88,6 @@ export default function AttendanceComponent({students}: StudentsTableProps) {
     //     }
     // ]
 
-    console.log(students)
-
     return (
         <div className={'w-full border bg-white shadow-lg p-2'}>
             <h4 className={'font-bold py-3'}>Davomat</h4>

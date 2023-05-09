@@ -23,7 +23,7 @@ export default function Students() {
     const basicColumns: any = [
         {
             name: "Id",
-            width: '150px',
+            width: '50px',
             wrap: true,
             selector: (row: studentProps) => row.id
         },

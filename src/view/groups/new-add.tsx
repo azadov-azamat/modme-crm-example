@@ -14,7 +14,9 @@ export default function NewGroupAdd({toggle, open}: ModalInterfaceProps) {
     const daysList = [
         {id: 1, name: "Juft kunlar"},
         {id: 2, name: "Toq kunlar"},
-        {id: 3, name: "Boshqa"}
+        {id: 3, name: "Dam olish kuni"},
+        {id: 4, name: "Har kuni"},
+        {id: 5, name: "Boshqa"}
     ]
 
     return (
@@ -49,6 +51,7 @@ export default function NewGroupAdd({toggle, open}: ModalInterfaceProps) {
                         )
                     }
                 </Select>
+                <Input name={'time'} type={"datetime-local"} size="lg" label="Guruhni boshlash vaqti"/>
                 <div className="btn w-full flex justify-start">
                     <Button>Yuborish</Button>
                 </div>

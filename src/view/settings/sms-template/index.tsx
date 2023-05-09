@@ -1,28 +1,33 @@
 import {useSelector} from "react-redux";
 import {Card} from "@material-tailwind/react";
 import {RootState} from "../../../redux/store";
-import {roomsProps} from "../../../interface/redux/variable.interface";
+import {smsTemplateProps} from "../../../interface/redux/variable.interface";
 import PageTitle from "../../../components/page-title";
 import TableComponent from "../../../components/table";
 import {ModalInterfaceProps} from "../../../interface/modal/modal.interface";
+import {PencilIcon, TrashIcon} from "@heroicons/react/24/outline";
 
-export default function Rooms({toggle}: ModalInterfaceProps) {
+export default function SmsTemplate({toggle}: ModalInterfaceProps) {
 
     // const query = qs.parse(location.search, {ignoreQueryPrefix: true})
-    const {rooms} = useSelector((state: RootState) => state.variables)
+    const {smsTemplates} = useSelector((state: RootState) => state.variables)
 
     const basicColumns: any = [
         {
-            name: "Id",
-            width: '50px',
-            wrap: true,
-            selector: (row: roomsProps) => row.id
+            name: 'Nomi',
+            width: 'auto',
+            wrap: false,
+            selector: (row: smsTemplateProps) => row.text
         },
         {
-            name: 'Nomi',
-            width: '200px',
+            name: "Amallar",
+            width: '150px',
             wrap: true,
-            selector: (row: roomsProps) => row.name
+            cell: (row: smsTemplateProps) => <div className={"flex gap-3"}>
+                <PencilIcon color={'orange'} className={"cursor-pointer"} width={25}
+                            onClick={() => console.log(row.id)}/>
+                <TrashIcon color={'red'} className={"cursor-pointer"} width={25} onClick={() => console.log(row.id)}/>
+            </div>
         }
     ]
 
@@ -32,9 +37,9 @@ export default function Rooms({toggle}: ModalInterfaceProps) {
 
     return (
         <div className={"flex flex-col p-3 gap-3"}>
-            <PageTitle title={"Xonalar"} toggle={toggle} isNew={true}/>
+            <PageTitle title={"SMS shablonlar"} toggle={toggle} isNew={true}/>
             <Card className={"p-2"}>
-                <TableComponent data={rooms}
+                <TableComponent data={smsTemplates}
                                 columns={basicColumns}
                                 totalPages={Math.ceil(total_count / 15)}
                                 currentPage={current_page}

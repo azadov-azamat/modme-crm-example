@@ -6,7 +6,8 @@ export interface InitialStateProps {
     studentGroup: groupsProps | null,
     employees: employeesProps[],
     roles: systemRoleProps[],
-    rooms: roomsProps[]
+    rooms: roomsProps[],
+    smsTemplates: smsTemplateProps[]
 }
 
 export interface coursesProps {
@@ -36,6 +37,7 @@ export interface studentProps {
     phone: string;
     groupId: string;
     balance: string;
+    gender: boolean;
 }
 
 export interface employeesProps {
@@ -45,7 +47,7 @@ export interface employeesProps {
     password: string;
     role: systemRoleProps;
     birthdate: string;
-    gander: boolean;
+    gender: boolean;
 
 }
 
@@ -57,4 +59,9 @@ export interface systemRoleProps {
 export interface roomsProps {
     id: number,
     name: string;
+}
+
+export interface smsTemplateProps {
+    id: number;
+    text: string;
 }

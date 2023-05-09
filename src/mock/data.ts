@@ -2,7 +2,7 @@ import {
     coursesProps,
     employeesProps,
     groupsProps,
-    roomsProps,
+    roomsProps, smsTemplateProps,
     studentProps,
     systemRoleProps
 } from "../interface/redux/variable.interface";
@@ -58,7 +58,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Ruslan Yuldashev",
         phone: "(97) 773-33-73",
         birthdate: "12/03/1989",
-        gander: true,
+        gender: true,
         role: mockSystemRoles[0],
         password: "010203"
     },
@@ -67,7 +67,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Fotima Yuldasheva",
         phone: "(97) 773-33-73",
         birthdate: "12/03/1992",
-        gander: false,
+        gender: false,
         role: mockSystemRoles[4],
         password: "010203"
     },
@@ -76,7 +76,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Husan Abdullayev",
         phone: "(97) 773-33-73",
         birthdate: "12/03/2004",
-        gander: true,
+        gender: true,
         role: mockSystemRoles[2],
         password: "010203"
     },
@@ -85,7 +85,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Muhammadillo Xakimov",
         phone: "(97) 773-33-73",
         birthdate: "12/03/2004",
-        gander: true,
+        gender: true,
         role: mockSystemRoles[4],
         password: "010203"
     },
@@ -94,7 +94,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Xusniddin Xamidov",
         phone: "(97) 773-33-73",
         birthdate: "12/03/2004",
-        gander: true,
+        gender: true,
         role: mockSystemRoles[3],
         password: "010203"
     },
@@ -103,7 +103,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Asal Ileysboyeva",
         phone: "(97) 773-33-73",
         birthdate: "12/03/2004",
-        gander: false,
+        gender: false,
         role: mockSystemRoles[4],
         password: "010203"
     },
@@ -112,7 +112,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Ahmad shox ",
         phone: "(97) 773-33-73",
         birthdate: "12/03/2004",
-        gander: true,
+        gender: true,
         role: mockSystemRoles[4],
         password: "010203"
     },
@@ -121,7 +121,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Abdulmuhsin Yuldashev",
         phone: "(97) 773-33-73",
         birthdate: "12/03/2003",
-        gander: true,
+        gender: true,
         role: mockSystemRoles[3],
         password: "010203"
     },
@@ -130,7 +130,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Azamat Azadov",
         phone: "(93) 205-24-43",
         birthdate: "22/08/2002",
-        gander: true,
+        gender: true,
         role: mockSystemRoles[1],
         password: "010203"
     },
@@ -139,7 +139,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Shaxzoda Abdullayeva",
         phone: "(97) 773-33-73",
         birthdate: "01/08/2003",
-        gander: false,
+        gender: false,
         role: mockSystemRoles[4],
         password: "010203"
     },
@@ -148,7 +148,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Ezoza Abdullayeva",
         phone: "(97) 773-33-73",
         birthdate: "12/03/2003",
-        gander: false,
+        gender: false,
         role: mockSystemRoles[4],
         password: "010203"
     },
@@ -157,7 +157,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Nafisa Ahmadaliyeva",
         phone: "(97) 773-33-73",
         birthdate: "04/05/2003",
-        gander: false,
+        gender: false,
         role: mockSystemRoles[4],
         password: "010203"
     },
@@ -166,7 +166,7 @@ export const mockEmployees: employeesProps[] = [
         name: "Malika Elnazarova",
         phone: "(97) 773-33-73",
         birthdate: "04/05/2003",
-        gander: false,
+        gender: false,
         role: mockSystemRoles[4],
         password: "010203"
     }
@@ -285,6 +285,7 @@ export const mockStudents: studentProps[] = [
         name: "Omadbek",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "412 500"
     },
     {
@@ -292,6 +293,7 @@ export const mockStudents: studentProps[] = [
         name: "Sevara",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: false,
         balance: "300 500"
     },
     {
@@ -299,6 +301,7 @@ export const mockStudents: studentProps[] = [
         name: "Nodir",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "522 500"
     },
     {
@@ -306,6 +309,7 @@ export const mockStudents: studentProps[] = [
         name: "Rozaliya",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: false,
         balance: "102 000"
     },
     {
@@ -313,6 +317,7 @@ export const mockStudents: studentProps[] = [
         name: "Malika",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: false,
         balance: "500 000"
     },
     {
@@ -320,6 +325,7 @@ export const mockStudents: studentProps[] = [
         name: "Baxrom",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "350 000"
     },
     {
@@ -327,6 +333,7 @@ export const mockStudents: studentProps[] = [
         name: "Venera",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: false,
         balance: "410 000"
     },
     {
@@ -334,6 +341,7 @@ export const mockStudents: studentProps[] = [
         name: "Yupiter",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "210 000"
     },
     {
@@ -341,6 +349,7 @@ export const mockStudents: studentProps[] = [
         name: "Azamat",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "1 000"
     },
     {
@@ -348,6 +357,7 @@ export const mockStudents: studentProps[] = [
         name: "Sarvar",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "20 000"
     },
     {
@@ -355,6 +365,7 @@ export const mockStudents: studentProps[] = [
         name: "Alisher",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "540 000"
     },
     {
@@ -362,6 +373,7 @@ export const mockStudents: studentProps[] = [
         name: "Ulugbek",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "1 000 000"
     },
     {
@@ -369,6 +381,7 @@ export const mockStudents: studentProps[] = [
         name: "Shahriyor",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "1 200 000"
     },
     {
@@ -376,6 +389,7 @@ export const mockStudents: studentProps[] = [
         name: "Tohir",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "200 000"
     },
     {
@@ -383,6 +397,7 @@ export const mockStudents: studentProps[] = [
         name: "Odilbek",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "400 000"
     },
     {
@@ -390,6 +405,7 @@ export const mockStudents: studentProps[] = [
         name: "Erkin",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "600 000"
     },
     {
@@ -397,6 +413,7 @@ export const mockStudents: studentProps[] = [
         name: "Eldor",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "700 000"
     },
     {
@@ -404,6 +421,7 @@ export const mockStudents: studentProps[] = [
         name: "Gulbahor",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: false,
         balance: "110 000"
     },
     {
@@ -411,6 +429,7 @@ export const mockStudents: studentProps[] = [
         name: "Nodirabegim",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: false,
         balance: "330 000"
     },
     {
@@ -418,6 +437,7 @@ export const mockStudents: studentProps[] = [
         name: "Asal",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: false,
         balance: "800 000"
     },
     {
@@ -425,6 +445,7 @@ export const mockStudents: studentProps[] = [
         name: "Husniddin",
         groupId: mockGroups[Math.floor(Math.random() * mockGroups.length)].id,
         phone: "(97) 773-33-73",
+        gender: true,
         balance: "80 000"
     }
 ]
@@ -477,5 +498,24 @@ export const mockCourse: coursesProps[] = [
         name: "Web",
         price: "400 000",
         child: null
+    }
+]
+
+export const mockSmsTemplate: smsTemplateProps[] = [
+    {
+        id: 1,
+        text: "Assalomu aleykum, iltimos to'lovni o'z vaqtida amalga oshiring",
+    },
+    {
+        id: 2,
+        text: "Assalomu aleykum, webinarda qatnashganingizdan hursandmiz",
+    },
+    {
+        id: 3,
+        text: "Assalomu aleykum, siz kutayotgan guruh ochildi! Batafsil: https://",
+    },
+    {
+        id: 4,
+        text: "Assalomu aleykum, bugungi bayram bilan sizni o'z jamoamiz bilan qutlaymiz",
     }
 ]

@@ -7,6 +7,7 @@ import {
     studentProps,
     systemRoleProps
 } from "../interface/redux/variable.interface";
+import {lanesDataProps, leadDataProps} from "../interface/lids/lids.interface.ts";
 
 export const mockRooms: roomsProps[] = [
     {
@@ -545,3 +546,74 @@ export const mockAutoSms: autoSmsProps[] = [
     }
 ]
 
+export const mockLanesData: lanesDataProps[] = [
+    {
+        title: "So'rovlar",
+        value: "requests"
+    },
+    {
+        title: "Kutish",
+        value: "waiting"
+    },
+    {
+        title: "To'plam",
+        value: "collection"
+    }
+]
+
+export const mockLeadData: leadDataProps[] = [
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    },
+    {
+        text: "Assalomu aleykum",
+        name: mockStudents[Math.floor(Math.random() * mockStudents.length)].name,
+        phone: mockStudents[Math.floor(Math.random() * mockStudents.length)].phone,
+        value: mockLanesData[Math.floor(Math.random() * mockLanesData.length)].value,
+    }
+]

@@ -1,107 +1,62 @@
-import {useState} from "react";
-import {arrayDataProps, arrayLanesProps} from "../../interface/lids/lids.interface.ts";
+import {lanesDataProps, leadDataProps} from "../../interface/lids/lids.interface.ts";
 import {DndContext, rectIntersection} from "@dnd-kit/core";
 import KanbanLane from "./components/kanban-lane";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
+import {addNewLeadData, deleteLeadData} from "../../redux/reducers/variable";
 
 export default function Lids() {
 
-    const [requestItems, setRequestItems] = useState<arrayDataProps[]>([])
-    const [collectionItems, setCollectionItems] = useState<arrayDataProps[]>([])
-    const [waitingItems, setWaitingItems] = useState<arrayDataProps[]>([])
+    const dispatch = useDispatch()
+    const {leadData} = useSelector((state: RootState) => state.variables)
 
-    const arrayLanes: arrayLanesProps[] = [
+    const arrayLanes: lanesDataProps[] = [
         {
             title: "So'rovlar",
             value: "requests",
-            items: requestItems,
-            color: "red"
+            items: leadData.filter(e => e.value === "requests"),
         },
         {
             title: "Kutish",
             value: "waiting",
-            items: waitingItems,
-            color: "yellow"
+            items: leadData.filter(e => e.value === "waiting"),
         },
         {
             title: "To'plam",
             value: "collection",
-            items: collectionItems,
-            color: "green"
+            items: leadData.filter(e => e.value === "collection"),
         }
     ]
-
-    const addNewCard = (data: arrayDataProps) => {
-        if (data.value === "requests") {
-            setRequestItems([...requestItems, {...data}]);
-        } else if (data.value === "waiting") {
-            setWaitingItems([...waitingItems, {...data}]);
-        } else {
-            setCollectionItems([...collectionItems, {...data}]);
-        }
-    }
-
-    const deleteCard = (parent: string, phone: string) => {
-        if (parent === "requests") {
-            const ArrayData = requestItems.filter(item => item.phone !== phone)
-            setRequestItems(ArrayData);
-        } else if (parent === "waiting") {
-            const ArrayData = waitingItems.filter(item => item.phone !== phone)
-            setWaitingItems(ArrayData);
-        } else {
-            const ArrayData = collectionItems.filter(item => item.phone !== phone)
-            setCollectionItems(ArrayData);
-        }
-    }
 
     return (
         <div className={"w-full h-auto"}>
             <DndContext
                 collisionDetection={rectIntersection}
                 onDragEnd={(e) => {
-                    const container = e.over?.id;
+                    const container = e.over?.id || "requests";
                     const name = e.active.data.current?.name || ''
                     const phone = e.active.data.current?.phone || ''
                     const text = e.active.data.current?.text || ''
 
-                    const index = e.active.data.current?.index || 0
+                    // const index = e.active.data.current?.index || 0
                     const parent = e.active.data.current?.parent || "requests"
 
-                    if (container === "requests") {
-                        setRequestItems([...requestItems, {name, phone, text, value: "requests"}]);
-                    } else if (container === "waiting") {
-                        setWaitingItems([...waitingItems, {name, phone, text, value: "waiting"}]);
-                    } else {
-                        setCollectionItems([...collectionItems, {name, phone, text, value: "collection"}]);
+                    const data: leadDataProps = {
+                        value: container,
+                        name, phone, text
                     }
-
-                    if (parent === "requests") {
-                        setRequestItems([
-                            ...requestItems.slice(0, index),
-                            ...requestItems.slice(index + 1),
-                        ]);
-                    } else if (parent === "waiting") {
-                        setWaitingItems([
-                            ...waitingItems.slice(0, index),
-                            ...waitingItems.slice(index + 1),
-                        ]);
-                    } else {
-                        setCollectionItems([
-                            ...collectionItems.slice(0, index),
-                            ...collectionItems.slice(index + 1),
-                        ]);
-                    }
+                    console.log(leadData.filter(e => e.phone !== phone && e.value !== parent))
+                    dispatch(deleteLeadData(leadData.filter(e => e.phone !== phone && e.value !== parent)))
+                    dispatch(addNewLeadData(data))
                 }}
             >
                 <div className={'w-full flex flex-col bg-white p-3'}>
                     <div className={"flex md:flex-row flex-col justify-between w-full gap-3"}>
-                        {arrayLanes.map(({title, value, items, color}, index) => (
+                        {arrayLanes.map(({title, value, items}, index) => (
                             <KanbanLane
-                                key={index}
+                                key={index.toString()}
                                 title={title}
                                 items={items}
-                                color={color}
-                                addNewCard={addNewCard}
-                                deleteItem={deleteCard}
                                 value={value}
                             />
                         ))}

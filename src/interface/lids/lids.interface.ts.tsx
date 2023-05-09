@@ -1,13 +1,20 @@
-export interface arrayLanesProps {
+import {UniqueIdentifier} from "@dnd-kit/core";
+
+export interface lanesDataProps {
     title: string;
     value: string;
-    items: any;
-    color?: string;
+    items?: leadDataProps[];
 }
 
-export interface arrayDataProps {
+export interface leadDataProps {
     name: string;
-    value: string;
+    value:  string | number;
     phone: string;
     text: string;
+}
+
+export interface editLeadDataProps {
+    container: UniqueIdentifier | undefined;
+    phone: string;
+    parent: string;
 }

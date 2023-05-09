@@ -1,3 +1,5 @@
+import {lanesDataProps, leadDataProps} from "../lids/lids.interface.ts";
+
 export interface InitialStateProps {
     lang: string;
     loading: boolean;
@@ -8,7 +10,9 @@ export interface InitialStateProps {
     roles: systemRoleProps[],
     rooms: roomsProps[],
     smsTemplates: smsTemplateProps[],
-    autoSms: autoSmsProps[]
+    autoSms: autoSmsProps[],
+    lanesData: lanesDataProps[],
+    leadData: leadDataProps[]
 }
 
 export interface coursesProps {

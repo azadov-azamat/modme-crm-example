@@ -1,11 +1,6 @@
 import SidebarModal from "../../components/modal/sidebar";
-import React from "react";
 import {Button, Input, Radio, Textarea} from "@material-tailwind/react";
-
-interface NewCourseAddComponentProps {
-    open: boolean;
-    toggle: React.MouseEventHandler<HTMLButtonElement>;
-}
+import {NewCourseAddComponentProps} from "../../interface/student/student.interface";
 
 export default function NewStudentAddComponent({toggle, open}: NewCourseAddComponentProps) {
 

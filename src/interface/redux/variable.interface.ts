@@ -2,7 +2,8 @@ export interface InitialStateProps {
     lang: string;
     loading: boolean;
     groups: groupsProps[],
-    students: studentProps[]
+    students: studentProps[],
+    studentGroup: groupsProps | null
 }
 
 export interface coursesProps {
@@ -28,7 +29,7 @@ export interface groupsProps {
 }
 
 export interface studentProps {
-    id: number;
+    id: number | undefined;
     name: string;
     phone: string;
     groupId: string;

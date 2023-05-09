@@ -5,14 +5,20 @@ import {useEffect, useState} from "react"
 import {studentProps} from "../../../interface/redux/variable.interface"
 import {IconButton, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Typography} from "@material-tailwind/react"
 import {
-    ArrowPathRoundedSquareIcon, ArrowUturnLeftIcon,
-    BanknotesIcon, CalculatorIcon,
+    ArrowPathRoundedSquareIcon,
+    ArrowUturnLeftIcon,
+    BanknotesIcon,
+    CalculatorIcon,
     ChatBubbleOvalLeftEllipsisIcon,
-    FlagIcon, InboxStackIcon,
+    FlagIcon,
+    InboxStackIcon,
     PencilIcon,
     TrashIcon
 } from "@heroicons/react/24/outline"
 import qs from "qs"
+import StudentProfileComponent from "../profile";
+import CallHistoryComponent from "../call-history";
+import StudentHistoryComponent from "../student-history";
 
 export default function StudentIn(): JSX.Element {
 
@@ -24,7 +30,7 @@ export default function StudentIn(): JSX.Element {
 
     useEffect(() => {
         if (query) {
-            setCurrentObj(students.find<studentProps>(({id}) => id === parseInt(query?.id)))
+            setCurrentObj(students.find<studentProps>(item => item.id === parseInt(query?.id)))
         }
     }, [location])
 
@@ -32,17 +38,17 @@ export default function StudentIn(): JSX.Element {
         {
             label: "Profil",
             value: "profile",
-            desc: "sdgdf",
+            desc: <StudentProfileComponent student={currentObj}/>,
         },
         {
             label: "Qo'ng'iroqlar tarixi",
             value: "call_history",
-            desc: "sdfgsdf",
+            desc: <CallHistoryComponent student={currentObj}/>,
         },
         {
             label: "Tarix",
             value: "history",
-            desc: "sdfgsdf",
+            desc: <StudentHistoryComponent/>,
         }
     ]
 
@@ -59,7 +65,7 @@ export default function StudentIn(): JSX.Element {
             </div>
             <div className="w-full flex flex-col md:flex-row gap-4">
                 <div
-                    className="card-group flex w-full md:w-1/3 justify-between h-auto border bg-white shadow-lg p-4 gap-3">
+                    className="card-group flex w-full h-fit md:w-1/3 justify-between border bg-white shadow-lg p-4 gap-3">
                     <div className="card-title flex flex-col gap-5">
                         <Typography
                             variant="h6"

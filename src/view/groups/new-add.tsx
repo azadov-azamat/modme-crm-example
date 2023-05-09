@@ -1,14 +1,9 @@
 import SidebarModal from "../../components/modal/sidebar";
-import React from "react";
 import {Button, Input, Option, Select} from "@material-tailwind/react";
 import {mockCourse} from "../../mock/data";
+import {ModalInterfaceProps} from "../../interface/modal/modal.interface";
 
-interface NewAddComponentProps {
-    open: boolean;
-    toggle: React.MouseEventHandler<HTMLButtonElement>;
-}
-
-export default function NewGroupAdd({toggle, open}: NewAddComponentProps) {
+export default function NewGroupAdd({toggle, open}: ModalInterfaceProps) {
 
     const teacherList = [
         {id: 1, name: "Ms. Ezoza"},

@@ -1,8 +1,12 @@
 import SidebarModal from "../../components/modal/sidebar";
 import {Button, Input, Radio, Textarea} from "@material-tailwind/react";
-import {NewCourseAddComponentProps} from "../../interface/student/student.interface";
+import {ModalInterfaceProps} from "../../interface/modal/modal.interface";
+import {studentProps} from "../../interface/redux/variable.interface";
 
-export default function NewStudentAddComponent({toggle, open}: NewCourseAddComponentProps) {
+interface NewStudentAddComponentProps extends ModalInterfaceProps {
+    student?: studentProps | null
+}
+export default function NewStudentAddComponent({toggle, open, student}: NewStudentAddComponentProps) {
 
     return (
         <SidebarModal toggle={toggle} open={open} title={"Yangi kurs qo'shish"}>
@@ -17,12 +21,13 @@ export default function NewStudentAddComponent({toggle, open}: NewCourseAddCompo
                         labelProps={{
                             className: "before:content-none after:content-none",
                         }}
+                        defaultValue={student?.phone}
                         containerProps={{
                             className: "min-w-0",
                         }}
                     />
                 </div>
-                <Input name={'name'} size="lg" label="Ismi"/>
+                <Input name={'name'} size="lg" label="Ismi" defaultValue={student?.name}/>
                 <Input name={'birthdate'} type={"date"} size="lg" label="Tug'ilgan sanasi"/>
                 <div className="flex">
                     <Radio id="man" name="type" label="Erkak" defaultChecked/>

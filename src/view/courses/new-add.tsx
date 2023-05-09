@@ -1,14 +1,12 @@
 import SidebarModal from "../../components/modal/sidebar";
-import React from "react";
 import {Button, Input, Option, Radio, Select, Textarea} from "@material-tailwind/react";
-import {mockCourse} from "../../mock/data";
+import {ModalInterfaceProps} from "../../interface/modal/modal.interface";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
 
-interface NewCourseAddComponentProps {
-    open: boolean;
-    toggle: React.MouseEventHandler<HTMLButtonElement>;
-}
+export default function NewCourseAdd({toggle, open}: ModalInterfaceProps) {
 
-export default function NewCourseAdd({toggle, open}: NewCourseAddComponentProps) {
+    const {groups} = useSelector((state: RootState) => state.variables)
 
     return (
         <SidebarModal toggle={toggle} open={open} title={"Yangi kurs qo'shish"}>
@@ -16,12 +14,12 @@ export default function NewCourseAdd({toggle, open}: NewCourseAddComponentProps)
                 <Input name={'name'} size="lg" label="Nomi"/>
                 <div className="flex ">
                     <Radio id="online" name="type" label="Online" defaultChecked/>
-                    <Radio id="offline" name="type" label="Offline" />
-                    <Radio id="video-course" name="type" label="Video Kurs" />
+                    <Radio id="offline" name="type" label="Offline"/>
+                    <Radio id="video-course" name="type" label="Video Kurs"/>
                 </div>
                 <Select variant="outlined" label="Kursni tanlang">
                     {
-                        mockCourse.map(({id, name}) =>
+                        groups.map(({id, name}) =>
                             <Option key={id} value={id.toString()}>{name}</Option>
                         )
                     }

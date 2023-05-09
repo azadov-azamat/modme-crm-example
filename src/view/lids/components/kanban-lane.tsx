@@ -65,7 +65,7 @@ export default function KanbanLane({title, value, items, deleteItem, addNewCard}
     }
 
     return (
-        <div className={`p-1 flex flex-col w-1/3 min-h-[10rem] h-auto py-2 px-4 border ${countItems > 0 ? "h-auto" : "h-[10rem]"}`}>
+        <div className={`p-1 flex flex-col md:w-1/3 w-full min-h-[10rem] h-auto py-2 px-4 border ${countItems > 0 ? "h-auto" : "h-[10rem]"}`}>
             <div className="flex flex-col">
                 <h6 className={"text-xl rounded-md p-1 font-bold mb-1 text-black"}>
                     {title}

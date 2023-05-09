@@ -93,7 +93,7 @@ export default function Lids() {
                 }}
             >
                 <div className={'w-full flex flex-col bg-white p-3'}>
-                    <div className={"flex justify-between w-full gap-3"}>
+                    <div className={"flex md:flex-row flex-col justify-between w-full gap-3"}>
                         {arrayLanes.map(({title, value, items, color}, index) => (
                             <KanbanLane
                                 key={index}

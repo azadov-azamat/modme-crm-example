@@ -27,9 +27,9 @@ export default function Active() {
         },
         {
             name: "O'qituvchi",
-            width: '150px',
+            width: '200px',
             wrap: true,
-            selector: (row: groupsProps) => row.teacher
+            selector: (row: groupsProps) => row.teacher.name
         },
         {
             name: 'Vaqt',

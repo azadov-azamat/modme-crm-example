@@ -22,6 +22,7 @@ import StudentHistoryComponent from "../student-history";
 import AddPaymentForStudent from "../modals/add-payment";
 import NewStudentAddComponent from "../new-add";
 import ModalComponent from "../../../components/modal";
+import SendSmsForStudent from "../modals/send-sms";
 
 export default function StudentIn(): JSX.Element {
 
@@ -30,17 +31,20 @@ export default function StudentIn(): JSX.Element {
     const query = qs.parse(location.search, {ignoreQueryPrefix: true})
 
     const [currentObj, setCurrentObj] = useState<studentProps>()
-    const [openPayment, setOpenPayment] = useState(false);
-    const [openEdit, setOpenEdit] = useState(false);
-    const [openDelete, setOpenDelete] = useState(false);
 
+    const [openPayment, setOpenPayment] = useState<boolean>(false);
+    const [openEdit, setOpenEdit] = useState<boolean>(false);
+    const [openDelete, setOpenDelete] = useState<boolean>(false);
+    const [openSms, setOpenSms] = useState<boolean>(false);
+
+    const toggleSms = () => setOpenSms(!openSms)
     const toggleDelete = () => setOpenDelete(!openDelete)
     const toggleEdit = () => setOpenEdit(!openEdit)
     const togglePayment = () => setOpenPayment(!openPayment)
 
     useEffect(() => {
-        if (query) {
-            setCurrentObj(students.find<studentProps>(item => item.id === parseInt(query?.id)))
+        if (query?.id) {
+            setCurrentObj(students.find(item => item?.id.toString() === query?.id))
         }
     }, [location])
 
@@ -63,7 +67,7 @@ export default function StudentIn(): JSX.Element {
     ]
 
     function StudentCard() {
-        return(
+        return (
             <div
                 className="card-group flex w-full h-fit md:w-1/3 justify-between border bg-white shadow-lg p-4 gap-3">
                 <div className="card-title flex flex-col gap-5">
@@ -93,7 +97,8 @@ export default function StudentIn(): JSX.Element {
                             </IconButton>
                         </Tooltip>
                         <Tooltip content={"To'lov qo'shish"} placement="bottom">
-                            <IconButton className={'rounded-full'} variant="text" color="blue-gray" onClick={togglePayment}>
+                            <IconButton className={'rounded-full'} variant="text" color="blue-gray"
+                                        onClick={togglePayment}>
                                 <BanknotesIcon className="w-5"/>
                             </IconButton>
                         </Tooltip>
@@ -122,7 +127,7 @@ export default function StudentIn(): JSX.Element {
                         </IconButton>
                     </Tooltip>
                     <Tooltip content={"Xabar jo'natish"} placement="right">
-                        <IconButton className={'rounded-full'} variant="text" color="blue-gray">
+                        <IconButton className={'rounded-full'} variant="text" color="blue-gray" onClick={toggleSms}>
                             <ChatBubbleOvalLeftEllipsisIcon className="w-5"/>
                         </IconButton>
                     </Tooltip>
@@ -170,7 +175,9 @@ export default function StudentIn(): JSX.Element {
             </div>
             <AddPaymentForStudent toggle={togglePayment} open={openPayment} student={currentObj}/>
             <NewStudentAddComponent open={openEdit} toggle={toggleEdit} student={currentObj}/>
-            <ModalComponent open={openDelete} toggle={toggleDelete} header={"Talabani o'chirib tashlash"} body={"Ushbu talabani guruhdan olib tashlamoqchimisiz?"}/>
+            <SendSmsForStudent open={openSms} toggle={toggleSms}/>
+            <ModalComponent open={openDelete} toggle={toggleDelete} header={"Talabani o'chirib tashlash"}
+                            body={"Ushbu talabani guruhdan olib tashlamoqchimisiz?"}/>
         </div>
     )
 }

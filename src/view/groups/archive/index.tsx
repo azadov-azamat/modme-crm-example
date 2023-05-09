@@ -27,9 +27,9 @@ export default function Archive() {
         },
         {
             name: "O'qituvchi",
-            width: '150px',
+            width: '200px',
             wrap: true,
-            selector: (row: groupsProps) => row.teacher
+            selector: (row: groupsProps) => row.teacher.name
         },
         {
             name: 'Vaqt',
@@ -57,7 +57,7 @@ export default function Archive() {
     const count_item = 20
 
     return (
-        <TableComponent data={groups.filter(item => item.status)}
+        <TableComponent data={groups.filter(item => !item.status)}
             // progressPending={isLoading}
                         columns={basicColumns}
             // totalPages={Math.ceil(total_count / (!query ? 15 : query.count))}

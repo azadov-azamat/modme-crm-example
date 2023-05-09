@@ -19,7 +19,7 @@ export default function AddPaymentForStudent({toggle, open, student}: AddPayment
                 <Select variant="outlined" label="Kursni tanlang">
                     {
                         groups.map(({id, name, teacher, startTime}) =>
-                            <Option key={id} value={id.toString()}>{name} - {teacher} - {startTime}</Option>
+                            <Option key={id} value={id.toString()}>{name} - {teacher.name} - {startTime}</Option>
                         )
                     }
                 </Select>

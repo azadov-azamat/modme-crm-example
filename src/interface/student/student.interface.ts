@@ -1,5 +1,5 @@
 import {studentProps} from "../redux/variable.interface";
 
 export interface StudentInterfaceProps {
-    student?: studentProps;
+    student?: studentProps | null;
 }

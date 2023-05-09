@@ -2,7 +2,7 @@ import {useSelector} from "react-redux"
 import {RootState} from "../../../redux/store"
 import {useLocation} from "react-router-dom"
 import {useEffect, useState} from "react"
-import {groupsProps} from "../../../interface/redux/variable.interface"
+import {groupsProps, studentProps} from "../../../interface/redux/variable.interface"
 import {
     IconButton,
     Menu,
@@ -27,14 +27,19 @@ import qs from "qs"
 import {ProfileMenuProps, StudentsTableProps} from "../../../interface/groups/groups-in.interface"
 import AttendanceComponent from "../../../components/attendance"
 import DiscountsComponent from "../../../components/discounts"
+import ModalComponent from "../../../components/modal";
 
 export default function GroupIn(): JSX.Element {
 
     const location = useLocation()
-    const {groups} = useSelector((state: RootState) => state.variables)
+    const {groups, students} = useSelector((state: RootState) => state.variables)
     const query = qs.parse(location.search, {ignoreQueryPrefix: true})
 
-    const [currentObj, setCurrentObj] = useState<groupsProps>()
+    const [currentObj, setCurrentObj] = useState<groupsProps | null>()
+    const [openDelete, setOpenDelete] = useState<boolean>(false);
+    const [groupStudent, setGroupStudent] = useState<studentProps[]>()
+
+    const toggleDelete = () => setOpenDelete(!openDelete)
 
     useEffect(() => {
         if (query) {
@@ -42,16 +47,20 @@ export default function GroupIn(): JSX.Element {
         }
     }, [location])
 
+    useEffect(() => {
+        if (currentObj !== null) setGroupStudent(students.filter(e => e.groupId === currentObj?.id))
+    }, [currentObj])
+
     const data = [
         {
             label: "Davomat",
             value: "davomat",
-            desc: <AttendanceComponent students={currentObj?.students}/>,
+            desc: <AttendanceComponent students={groupStudent}/>,
         },
         {
             label: "Chegirmalar",
             value: "aksiya",
-            desc: <DiscountsComponent students={currentObj?.students}/>,
+            desc: <DiscountsComponent students={groupStudent}/>,
         }
     ]
 
@@ -63,7 +72,7 @@ export default function GroupIn(): JSX.Element {
                     className="font-normal"
                     color={"inherit"}
                 >
-                    {currentObj?.id + " * " + currentObj?.name + " * " + currentObj?.teacher}
+                    {currentObj?.id + " * " + currentObj?.name + " * " + currentObj?.teacher.name}
                 </Typography>
             </div>
             <div className="w-full flex flex-col md:flex-row gap-4">
@@ -80,20 +89,20 @@ export default function GroupIn(): JSX.Element {
                             <IconButton variant="text" color="blue-gray">
                                 <PencilIcon className="w-5"/>
                             </IconButton>
-                            <IconButton variant="text" color="blue-gray">
+                            <IconButton variant="text" color="blue-gray" onClick={toggleDelete}>
                                 <TrashIcon className="w-5"/>
                             </IconButton>
                         </div>
                     </div>
                     <p>
-                        {currentObj?.name + " * " + currentObj?.teacher}
+                        {currentObj?.name + " * " + currentObj?.teacher.name}
                     </p>
                     <div className="flex flex-col text-sm">
                         <span>Narxi: <b>{currentObj?.price}</b></span>
                         <span>Kunlar: <b>{currentObj?.days}</b></span>
                     </div>
                     <div className="flex flex-col text-sm">
-                        <span>Xonalar: <b>{currentObj?.room}</b></span>
+                        <span>Xonalar: <b>{currentObj?.room.name}</b></span>
                         <span>Boshlash: <b>{currentObj?.startTime}</b></span>
                     </div>
                     <div className="flex flex-col text-sm">
@@ -101,7 +110,7 @@ export default function GroupIn(): JSX.Element {
                         <span>Tugash sanasi: <b>{currentObj?.finalDate}</b></span>
                     </div>
                     <hr/>
-                    <StudentTable students={currentObj?.students}/>
+                    <StudentTable students={groupStudent}/>
                 </div>
                 <div className="w-full">
                     <Tabs value="davomat">
@@ -122,6 +131,8 @@ export default function GroupIn(): JSX.Element {
                     </Tabs>
                 </div>
             </div>
+            <ModalComponent open={openDelete} toggle={toggleDelete} header={"Guruhni o'chirib tashlash"}
+                            body={"Ushbu guruhni olib tashlamoqchimisiz?"}/>
         </div>
     )
 }

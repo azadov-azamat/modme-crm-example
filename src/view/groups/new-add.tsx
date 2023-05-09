@@ -2,26 +2,19 @@ import SidebarModal from "../../components/modal/sidebar";
 import {Button, Input, Option, Select} from "@material-tailwind/react";
 import {mockCourse} from "../../mock/data";
 import {ModalInterfaceProps} from "../../interface/modal/modal.interface";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
 
 export default function NewGroupAdd({toggle, open}: ModalInterfaceProps) {
 
-    const teacherList = [
-        {id: 1, name: "Ms. Ezoza"},
-        {id: 2, name: "Mr. Sherzod"},
-        {id: 3, name: "Ms. Nafisa"},
-        {id: 4, name: "Mr. Sherali"}
-    ]
+    const {employees, rooms} = useSelector((state: RootState) => state.variables)
+
+    const teacherList = employees.filter(item => item.role.id === 5)
 
     const daysList = [
         {id: 1, name: "Juft kunlar"},
         {id: 2, name: "Toq kunlar"},
         {id: 3, name: "Boshqa"}
-    ]
-
-    const roomsList = [
-        {id: 1, name: "1 - xona"},
-        {id: 2, name: "2 - xona"},
-        {id: 3, name: "3 - xona"}
     ]
 
     return (
@@ -51,7 +44,7 @@ export default function NewGroupAdd({toggle, open}: ModalInterfaceProps) {
                 </Select>
                 <Select variant="outlined" label="Xona tanlang">
                     {
-                        roomsList.map(({id, name}) =>
+                        rooms.map(({id, name}) =>
                             <Option key={id} value={id.toString()}>{name}</Option>
                         )
                     }

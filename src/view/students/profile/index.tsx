@@ -56,7 +56,7 @@ export default function StudentProfileComponent({student}: StudentInterfaceProps
                 <div className="flex justify-between border-b-2 pb-3">
                     <div className="flex flex-col font-bold">
                         <span>{group?.name}</span>
-                        <span>{group?.teacher}</span>
+                        <span>{group?.teacher.name}</span>
                     </div>
                     <div className="flex flex-col text-sm">
                         <span>{group?.startDate} - <br/> {group?.finalDate}</span>

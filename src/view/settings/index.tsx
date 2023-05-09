@@ -12,6 +12,7 @@ import {useState} from "react";
 import NewRoomAddComponent from "./rooms/new-add";
 import SmsTemplate from "./sms-template";
 import NewSmsTemplateAddComponent from "./sms-template/new-add";
+import AutoSmsComponent from "./auto-sms";
 
 export default function Settings() {
 
@@ -37,9 +38,7 @@ export default function Settings() {
         {
             label: "Avto-sms",
             value: "auto_sms",
-            desc: `We're not always in the position that we want to be at.
-      We're constantly growing. We're constantly making mistakes. We're
-      constantly trying to express ourselves and actualize our dreams.`,
+            desc: <AutoSmsComponent/>,
         },
         {
             label: "SMS shablonlar",
@@ -51,7 +50,7 @@ export default function Settings() {
     return (
 
         <Tabs value="employees">
-            <TabsHeader>
+            <TabsHeader className={"flex flex-col md:flex-row"}>
                 {data.map(({ label, value }) => (
                     <Tab key={value} value={value}>
                         {label}

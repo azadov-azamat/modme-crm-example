@@ -7,7 +7,8 @@ export interface InitialStateProps {
     employees: employeesProps[],
     roles: systemRoleProps[],
     rooms: roomsProps[],
-    smsTemplates: smsTemplateProps[]
+    smsTemplates: smsTemplateProps[],
+    autoSms: autoSmsProps[]
 }
 
 export interface coursesProps {
@@ -64,4 +65,10 @@ export interface roomsProps {
 export interface smsTemplateProps {
     id: number;
     text: string;
+}
+
+export interface autoSmsProps extends smsTemplateProps {
+    title: string;
+    isSend: boolean;
+    desc: string;
 }

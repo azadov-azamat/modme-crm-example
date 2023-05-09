@@ -1,4 +1,5 @@
 import {
+    autoSmsProps,
     coursesProps,
     employeesProps,
     groupsProps,
@@ -517,5 +518,29 @@ export const mockSmsTemplate: smsTemplateProps[] = [
     {
         id: 4,
         text: "Assalomu aleykum, bugungi bayram bilan sizni o'z jamoamiz bilan qutlaymiz",
+    }
+]
+
+export const mockAutoSms: autoSmsProps[] = [
+    {
+        id: 1,
+        title: "To'lov amalga oshirildi",
+        text: "Assalomu aleykum, sizning to'lovingiz amalga oshirildi",
+        desc: "Xabar talaba to'lov amalga oshirgan paytning o'zida yuboriladi",
+        isSend: false
+    },
+    {
+        id: 2,
+        title: "Talaba guruhga qo'shildi",
+        text: "Assalomu aleykum, sizni yangi ochilgan qo'shishdi, darsga o'z vaqtida keling",
+        desc: "Xabar kutilgan guruh ochilganda talabalarga yuboriladi. Xabar guruh ochilgan kunning ertasi yetkaziladi",
+        isSend: true
+    },
+    {
+        id: 2,
+        title: "Talaba tug'ilgan kuni",
+        text: "Assalomu aleykum, sizni bugungi tavallud ayyomingiz bilan o'quv markazimiz nomidan tabriklaymiz",
+        desc: "Xabar talabaning tug'gilgan kunida yuboriladi. Xabar ertalab soat 09:00 da yuboriladi",
+        isSend: false
     }
 ]

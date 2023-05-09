@@ -9,7 +9,6 @@ import {PencilIcon, TrashIcon} from "@heroicons/react/24/outline";
 
 export default function SmsTemplate({toggle}: ModalInterfaceProps) {
 
-    // const query = qs.parse(location.search, {ignoreQueryPrefix: true})
     const {smsTemplates} = useSelector((state: RootState) => state.variables)
 
     const basicColumns: any = [

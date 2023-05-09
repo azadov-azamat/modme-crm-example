@@ -9,7 +9,7 @@ function Layout({children}: LayoutProps): JSX.Element {
             <NavbarComponent/>
             <div className="flex w-full h-screen">
                 <Sidebar/>
-                <main className={'md:ml-40 ml-24 sm:mt-20 mt-16 transition-transform duration-500 w-full p-4 h-auto'}>{children}</main>
+                <main className={'md:ml-40 ml-20 sm:mt-20 mt-16 transition-transform duration-500 w-full p-4 h-auto'}>{children}</main>
             </div>
             {/*<FooterComponent/>*/}
         </div>

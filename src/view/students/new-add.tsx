@@ -13,7 +13,7 @@ export default function NewStudentAddComponent({toggle, open, student}: NewStude
             <div className="flex flex-col gap-5">
                 <div className="flex items-center w-full h-auto">
                     <span
-                        className={'flex items-center h-10 p-3 rounded-r-none border rounded-l-lg border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3'}>+998</span>
+                        className={'flex items-center h-10 p-3 rounded-r-none border rounded-l-lg border-blue-gray-200 bg-blue-gray-500/10 pl-3'}>+998</span>
                     <Input
                         type="tel"
                         placeholder="Mobile Number"

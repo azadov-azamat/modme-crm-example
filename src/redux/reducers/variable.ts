@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Dictionary} from "../../helpers/enumuration/dictionary";
 import i18n from "i18next";
-import {InitialStateProps} from "../../interface/redux/variable.interface";
+import {coursesProps, InitialStateProps} from "../../interface/redux/variable.interface";
 import {
     mockAutoSms,
+    mockCourse,
     mockEmployees,
     mockGroups,
     mockLanesData,
@@ -18,6 +19,7 @@ import {leadDataProps} from "../../interface/lids/lids.interface.ts";
 const initialState: InitialStateProps = {
     lang: localStorage.getItem('i18nextLng') || 'ru',
     loading: false,
+    courses: mockCourse,
     groups: mockGroups,
     students: mockStudents,
     studentGroup: null,
@@ -42,6 +44,9 @@ const reducers = {
     deleteLeadData: (state: InitialStateProps, action: PayloadAction<leadDataProps[]>) => {
         console.log(action.payload)
         state.leadData = action.payload
+    },
+    addNewCourse: (state: InitialStateProps, action: PayloadAction<coursesProps>) => {
+        state.courses.push(action.payload)
     }
 }
 
@@ -51,5 +56,5 @@ export const variableSlice = createSlice({
     reducers
 })
 
-export const {setLang, addNewLeadData, deleteLeadData} = variableSlice.actions;
+export const {setLang, addNewLeadData, deleteLeadData, addNewCourse} = variableSlice.actions;
 export default variableSlice.reducer

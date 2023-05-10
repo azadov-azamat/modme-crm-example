@@ -3,6 +3,7 @@ import {lanesDataProps, leadDataProps} from "../lids/lids.interface.ts";
 export interface InitialStateProps {
     lang: string;
     loading: boolean;
+    courses: coursesProps[],
     groups: groupsProps[],
     students: studentProps[],
     studentGroup: groupsProps | null,
@@ -19,7 +20,8 @@ export interface coursesProps {
     id: number;
     name: string;
     price: string;
-    child?: coursesProps[] | null;
+    type: string;
+    parentId?: string;
 }
 
 export interface groupsProps {

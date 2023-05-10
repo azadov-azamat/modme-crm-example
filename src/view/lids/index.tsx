@@ -42,7 +42,7 @@ export default function Lids() {
                     const parent = e.active.data.current?.parent || "requests"
 
                     const data: leadDataProps = {
-                        value: container,
+                        value: `${container}`,
                         name, phone, text
                     }
                     console.log(leadData.filter(e => e.phone !== phone && e.value !== parent))

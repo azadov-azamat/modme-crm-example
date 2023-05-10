@@ -19,7 +19,6 @@ export default function Students() {
     const [open, setOpen] = useState(false);
     const toggle = () => setOpen(!open)
 
-
     const basicColumns: any = [
         {
             name: "Id",

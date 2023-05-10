@@ -10,6 +10,7 @@ import {
     UsersIcon
 } from "@heroicons/react/24/outline";
 import {useEffect, useState} from "react";
+import ScheduleComponent from "./schedule";
 
 export default function Dashboard() {
 
@@ -77,12 +78,13 @@ export default function Dashboard() {
     }
 
     return (
-        <div className={"flex gap-2 w-full"}>
+        <div className={"flex flex-col gap-2 w-full"}>
             <div className="flex justify-between items-center w-full gap-2">
                 {statisticList.slice(0, width < 1000 ? 4 : 5).map(({name, icon, count}, key) =>
                     <StatisticCard text={name} icon={icon} key={key} count={count}/>
                 )}
             </div>
+            <ScheduleComponent/>
         </div>
     );
 }

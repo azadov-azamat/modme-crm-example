@@ -1,5 +1,3 @@
-import {UniqueIdentifier} from "@dnd-kit/core";
-
 export interface lanesDataProps {
     title: string;
     value: string;
@@ -8,13 +6,13 @@ export interface lanesDataProps {
 
 export interface leadDataProps {
     name: string;
-    value:  string | number;
+    value: string;
     phone: string;
     text: string;
 }
 
 export interface editLeadDataProps {
-    container: UniqueIdentifier | undefined;
+    container: string;
     phone: string;
     parent: string;
 }

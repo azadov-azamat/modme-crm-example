@@ -111,7 +111,8 @@ export default function NavbarComponent() {
     }
 
     return (
-        <nav className={"fixed z-40 bg-white w-full sm:h-20 h-16 py-2 px-2 md:px-8 flex justify-between items-center border shadow-md"}>
+        <nav
+            className={"fixed z-40 bg-white w-full sm:h-20 h-16 py-2 px-2 md:px-8 flex justify-between items-center border shadow-md"}>
             <div className="search w-80 md:flex hidden">
                 <Input className={'rounded rounded-full'} label="Qidiruv" icon={createElement(MagnifyingGlassIcon, {
                     className: `w-5`,

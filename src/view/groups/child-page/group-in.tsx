@@ -83,7 +83,7 @@ export default function GroupIn(): JSX.Element {
                             className="font-normal"
                             color={"inherit"}
                         >
-                            {currentObj?.id}
+                            {currentObj?.id || 0}
                         </Typography>
                         <div className="flex gap-3 items-center">
                             <IconButton variant="text" color="blue-gray">

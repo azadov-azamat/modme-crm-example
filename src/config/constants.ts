@@ -3,10 +3,12 @@ import Students from "../view/students";
 import Teachers from "../view/teachers";
 import Courses from "../view/courses";
 import Groups from "../view/groups";
-import Lids from "../view/lids";
 import Settings from "../view/settings";
 import GroupIn from "../view/groups/child-page/group-in";
 import StudentIn from "../view/students/child-page/student-in";
+import Leads from "../view/lead";
+import {AttendanceDataProps, studentProps} from "../interface/redux/variable.interface";
+
 
 const groupRoutes = [
     {
@@ -60,9 +62,9 @@ export const routes = [
     ...groupRoutes,
     {
         id: 6,
-        name: 'lids',
-        path: '/lids',
-        component: Lids
+        name: 'leads',
+        path: '/leads',
+        component: Leads
     },
     {
         id: 7,
@@ -72,9 +74,35 @@ export const routes = [
     },
 ]
 
+export const findAtt = (student: studentProps, att: AttendanceDataProps[], currentDay: number): boolean => {
+    for (const attKey of att) {
+        if (attKey.studentId === student.id && attKey.groupId === student.groupId) {
+            for (const attDay of attKey.attDays) {
+                if (attDay.day === currentDay) {
+                    return attDay.isAtt
+                }
+            }
+        }
+    }
+    return false;
+}
+// export const randomAtt = (): AttDaysProps[] => {
+//
+//     const date = new Date()
+//     const day = date.getDay()
+//
+//     const tableHeaderData: AttDaysProps[] = []
+//     for (let i = day - 3; i <= day; i++) {
+//         const data: AttDaysProps = {
+//             day: i,
+//             isAtt: Math.floor(Math.random()) === 0
+//         }
+//         tableHeaderData.push(data)
+//     }
+//     return tableHeaderData;
+// }
 
-
-export default function toggleFullScreen() {
+export default function toggleFullScreen(): void {
     const doc = window.document;
     const docEl = doc.documentElement;
 
@@ -87,10 +115,10 @@ export default function toggleFullScreen() {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
         requestFullScreen.call(docEl);
-    }
-    else {
+    } else {
         cancelFullScreen.call(doc);
     }
 }
+

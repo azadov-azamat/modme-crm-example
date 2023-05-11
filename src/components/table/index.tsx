@@ -13,6 +13,7 @@ export default function TableComponent({
                                            currentPage,
                                            totalPages,
                                            size,
+    isPagination = true,
                                            ...rest
                                        }: TableInterfaceProps) {
     const navigate = useNavigate()
@@ -97,7 +98,9 @@ export default function TableComponent({
                 paginationDefaultPage={currentPage + 1}
                 paginationRowsPerPageOptions={[10, 25, 50, 100]}
             />
-            <CustomPagination/>
+            {
+                isPagination && <CustomPagination/>
+            }
         </div>
     );
 }

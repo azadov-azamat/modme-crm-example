@@ -1,13 +1,16 @@
 import {
+    AttDaysProps,
+    AttendanceDataProps,
     autoSmsProps,
     coursesProps,
     employeesProps,
     groupsProps,
-    roomsProps, smsTemplateProps,
+    roomsProps,
+    smsTemplateProps,
     studentProps,
     systemRoleProps
 } from "../interface/redux/variable.interface";
-import {lanesDataProps, leadDataProps} from "../interface/lids/lids.interface.ts";
+import {lanesDataProps, leadDataProps} from "../interface/leads/leads.interface.ts";
 
 export const mockRooms: roomsProps[] = [
     {
@@ -452,54 +455,71 @@ export const mockStudents: studentProps[] = [
     }
 ]
 
+export const mockCourseTypeData = [
+    {
+        id: 1,
+        name: "online",
+    },
+    {
+        id: 2,
+        name: "offline",
+    },
+    {
+        id: 3,
+        name: "Video kurs",
+    }
+
+]
+
+
 export const mockCourse: coursesProps[] = [
     {
         id: 1,
         name: "Targetolog",
         price: "900 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     },
     {
         id: 2,
         name: "Web",
         price: "100 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     },
     {
         id: 3,
         name: "Web site qilish",
         price: "400 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     },
     {
         id: 4,
         name: "English beginner",
         price: "500 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     },
     {
         id: 5,
         name: "Rus tili",
         price: "400 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     },
     {
         id: 6,
         name: "SMM",
         price: "200 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     },
     {
         id: 7,
         name: "3D's MAX",
         price: "800 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     },
     {
         id: 8,
         name: "Web",
         price: "400 000",
-        child: null
+        type: mockCourseTypeData[Math.floor(Math.random() * mockCourseTypeData.length)].name
     }
 ]
 
@@ -561,6 +581,165 @@ export const mockLanesData: lanesDataProps[] = [
     }
 ]
 
+const randomAtt = (): AttDaysProps[] => {
+
+    const date = new Date()
+    const day = date.getDay()
+
+    const tableHeaderData: AttDaysProps[] = []
+    for (let i = day - 3; i < day; i++) {
+        const data: AttDaysProps = {
+            day: i,
+            isAtt: (Math.floor(Math.random() * 10) % 2) === 0
+        }
+        tableHeaderData.push(data)
+    }
+    return tableHeaderData;
+}
+
+const data: AttDaysProps[] = [
+    {
+        day: 8,
+        isAtt: true
+    },
+    {
+        day: 9,
+        isAtt: false
+    },
+    {
+        day: 10,
+        isAtt: true
+    }
+]
+
+export const mockAttendanceData: AttendanceDataProps[] = [
+    {
+        id: 1,
+        studentId: 1,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 1)].groupId,
+        attDays: data
+    },
+    {
+        id: 2,
+        studentId: 2,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 2)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 3,
+        studentId: 3,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 3)].groupId,
+        attDays: data
+    },
+    {
+        id: 4,
+        studentId: 4,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 4)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 5,
+        studentId: 5,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 5)].groupId,
+        attDays: data
+    },
+    {
+        id: 6,
+        studentId: 6,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 6)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 7,
+        studentId: 7,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 7)].groupId,
+        attDays: data
+    },
+    {
+        id: 8,
+        studentId: 8,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 8)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 9,
+        studentId: 9,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 9)].groupId,
+        attDays: data
+    },
+    {
+        id: 10,
+        studentId: 10,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 10)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 11,
+        studentId: 11,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 11)].groupId,
+        attDays: data
+    },
+    {
+        id: 12,
+        studentId: 12,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 12)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 13,
+        studentId: 13,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 13)].groupId,
+        attDays: data
+    },
+    {
+        id: 14,
+        studentId: 14,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 14)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 15,
+        studentId: 15,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 15)].groupId,
+        attDays: data
+    },
+    {
+        id: 16,
+        studentId: 16,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 16)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 17,
+        studentId: 17,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 17)].groupId,
+        attDays: data
+    },
+    {
+        id: 18,
+        studentId: 18,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 18)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 19,
+        studentId: 19,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 19)].groupId,
+        attDays: data
+    },
+    {
+        id: 20,
+        studentId: 20,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 20)].groupId,
+        attDays: randomAtt()
+    },
+    {
+        id: 21,
+        studentId: 21,
+        groupId: mockStudents[mockStudents.findIndex(value => value.id === 21)].groupId,
+        attDays: data
+    }
+]
 export const mockLeadData: leadDataProps[] = [
     {
         text: "Assalomu aleykum",

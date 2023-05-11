@@ -1,4 +1,4 @@
-import {lanesDataProps, leadDataProps} from "../lids/lids.interface.ts";
+import {lanesDataProps, leadDataProps} from "../leads/leads.interface.ts";
 
 export interface InitialStateProps {
     lang: string;
@@ -13,7 +13,8 @@ export interface InitialStateProps {
     smsTemplates: smsTemplateProps[],
     autoSms: autoSmsProps[],
     lanesData: lanesDataProps[],
-    leadData: leadDataProps[]
+    leadData: leadDataProps[],
+    attendance: AttendanceDataProps[]
 }
 
 export interface coursesProps {
@@ -77,4 +78,16 @@ export interface autoSmsProps extends smsTemplateProps {
     title: string;
     isSend: boolean;
     desc: string;
+}
+
+export interface AttDaysProps {
+    day: number,
+    isAtt: boolean;
+}
+
+export interface AttendanceDataProps {
+    id: number;
+    studentId: number;
+    groupId: string;
+    attDays: AttDaysProps[]
 }

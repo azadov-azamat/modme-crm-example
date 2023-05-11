@@ -44,7 +44,7 @@ export const CabinetNavigation: CabinetNavigationProps[] = [
         id: 6,
         title: 'Lidlar',
         icon: ArrowDownTrayIcon,
-        navLink: '/lids'
+        navLink: '/leads'
     },
     {
         id: 7,

@@ -8,6 +8,7 @@ export interface TableInterfaceProps {
     totalCount: number;
     currentPage: number;
     size: number;
-    ref?: ReactNode
+    ref?: ReactNode;
+    isPagination?: boolean;
 
 }

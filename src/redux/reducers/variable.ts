@@ -1,8 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Dictionary} from "../../helpers/enumuration/dictionary";
 import i18n from "i18next";
-import {coursesProps, InitialStateProps} from "../../interface/redux/variable.interface";
+import {AttendanceDataProps, coursesProps, InitialStateProps} from "../../interface/redux/variable.interface";
 import {
+    mockAttendanceData,
     mockAutoSms,
     mockCourse,
     mockEmployees,
@@ -14,7 +15,7 @@ import {
     mockStudents,
     mockSystemRoles
 } from "../../mock/data";
-import {leadDataProps} from "../../interface/lids/lids.interface.ts";
+import {leadDataProps} from "../../interface/leads/leads.interface.ts";
 
 const initialState: InitialStateProps = {
     lang: localStorage.getItem('i18nextLng') || 'ru',
@@ -29,7 +30,8 @@ const initialState: InitialStateProps = {
     smsTemplates: mockSmsTemplate,
     autoSms: mockAutoSms,
     lanesData: mockLanesData,
-    leadData: mockLeadData
+    leadData: mockLeadData,
+    attendance: mockAttendanceData
 }
 
 const reducers = {
@@ -47,6 +49,9 @@ const reducers = {
     },
     addNewCourse: (state: InitialStateProps, action: PayloadAction<coursesProps>) => {
         state.courses.push(action.payload)
+    },
+    addNewAttData: (state: InitialStateProps, action: PayloadAction<AttendanceDataProps>)=>{
+        state.attendance.push(action.payload)
     }
 }
 
@@ -56,5 +61,5 @@ export const variableSlice = createSlice({
     reducers
 })
 
-export const {setLang, addNewLeadData, deleteLeadData, addNewCourse} = variableSlice.actions;
+export const {setLang, addNewLeadData, deleteLeadData, addNewCourse, addNewAttData} = variableSlice.actions;
 export default variableSlice.reducer

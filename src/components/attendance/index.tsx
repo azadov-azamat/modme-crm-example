@@ -1,135 +1,110 @@
 // Davomat paneli
-import {Typography} from "@material-tailwind/react";
 import {StudentsTableProps} from "../../interface/groups/groups-in.interface";
+import {AttDaysProps, AttendanceDataProps, studentProps} from "../../interface/redux/variable.interface";
+import TableComponent from "../table";
+import {TableColumn} from "react-data-table-component";
 import {MinusCircleIcon, PlusCircleIcon, XCircleIcon} from "@heroicons/react/24/outline";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
+import {findAtt} from "../../config/constants";
+import {useCallback, useState} from "react";
+import {addNewAttData} from "../../redux/reducers/variable";
 
 export default function AttendanceComponent({students}: StudentsTableProps) {
 
-    const TABLE_HEAD = ["Name", "kelmadi", "boredi", "null"];
+    const dispatch = useDispatch()
+    const [isHere, setIsHere] = useState<boolean>(false)
+    const toggleHere = () => setIsHere(!isHere)
 
-    {/*const data = [*/}
-    {/*    {*/}
-    {/*        id: 1,*/}
-    {/*        name: "Sanobar",*/}
-    {/*        studyDay: {*/}
-    {/*            yan: {*/}
-    {/*                1: true,*/}
-    {/*                2: true,*/}
-    {/*                3: false,*/}
-    {/*                4: true,*/}
-    {/*                5: false,*/}
-    {/*                6: false,*/}
-    {/*                7: null,*/}
-    {/*                8: null,*/}
-    {/*            },*/}
-    {/*            fev: {*/}
-    //                 1: null,
-    //                 2: null,
-    {/*                3: null,*/}
-    {/*                4: null,*/}
-    {/*                5: null,*/}
-    {/*                6: null,*/}
-    {/*                7: null,*/}
-    //                 8: null
-    //             },
-    //         }
-    //     },
-    {/*    {*/}
-    {/*        id: 2,*/}
-    {/*        name: "Omadbek",*/}
-    {/*        studyDay: {*/}
-    {/*            yan: {*/}
-    //                 1: true,
-    //                 2: true,
-    //                 3: true,
-    //                 4: true,
-    {/*                5: false,*/}
-    //                 6: true,
-    //                 7: null,
-    //                 8: null,
-    {/*            },*/}
-    {/*            fev: {*/}
-    {/*                1: null,*/}
-    //                 2: null,
-    //                 3: null,
-    //                 4: null,
-    //                 5: null,
-    //                 6: null,
-    //                 7: null,
-    //                 8: null
-    //             },
-    //         }
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "Nodir",
-    //         studyDay: {
-    //             yan: {
-    //                 1: false,
-    {/*                2: true,*/}
-    //                 3: true,
-    //                 4: true,
-    //                 5: true,
-    //                 6: false,
-    //                 7: null,
-    //                 8: null,
-    //             },
-    //             fev: {
-    //                 1: null,
-    //                 2: null,
-    //                 3: null,
-    //                 4: null,
-    //                 5: null,
-    //                 6: null,
-    //                 7: null,
-    //                 8: null
-    //             },
-    //         }
-    //     }
-    // ]
+    const {attendance} = useSelector((state: RootState) => state.variables)
+
+    const newAtt = useCallback(async (student: studentProps) => {
+        toggleHere()
+        const date = new Date()
+
+        const attDays: AttDaysProps = {
+            day: date.getDate(),
+            isAtt: isHere
+        }
+
+        const data: AttendanceDataProps = {
+            id: Math.floor(Math.random() * ((date.getDate() + 5) - date.getDate() + 1) + date.getDate()),
+            studentId: student.id,
+            groupId: student.groupId,
+            attDays: [attDays]
+        }
+        dispatch(addNewAttData(data))
+    }, [])
+
+
+    const basicColumns: TableColumn<any>[] = [
+        {
+            name: "Ismi",
+            width: '150px',
+            wrap: true,
+            cell: (row: studentProps) => row.name
+        },
+        ...tableColumns(attendance, newAtt)
+    ]
+
+    const total_count = 234;
+    const current_page = 1;
+    const count_item = 20
 
     return (
         <div className={'w-full border bg-white shadow-lg p-2'}>
-            <h4 className={'font-bold py-3'}>Davomat</h4>
-            <div className="">
-                <table className="w-full min-w-max table-auto text-left">
-                    <thead>
-                    <tr>
-                        {TABLE_HEAD.map((head) => (
-                            <th key={head} className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4">
-                                <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70"
-                                >
-                                    {head}
-                                </Typography>
-                            </th>
-                        ))}
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        students?.map((item, key) =>
-                            <tr key={key}>
-                                <td>
-                                    {item?.name}
-                                </td>
-                                <td>
-                                    <MinusCircleIcon width={30}/>
-                                </td>
-                                <td>
-                                    <PlusCircleIcon width={30}/>
-                                </td>
-                                <td>
-                                    <XCircleIcon width={30}/>
-                                </td>
-                            </tr>
-                        )
-                    }
-                    </tbody>
-                </table>
-            </div>
+            <TableComponent data={students}
+                // progressPending={isLoading}
+                            columns={basicColumns}
+                // totalPages={Math.ceil(total_count / (!query ? 15 : query.count))}
+                            totalPages={Math.ceil(total_count / 15)}
+                            currentPage={current_page}
+                            size={count_item}
+                            isPagination={false}
+                            totalCount={total_count}
+            />
         </div>
     );
+}
+
+function tableColumns(att: AttendanceDataProps[], addAtt: any) {
+
+    const date = new Date()
+    const day = date.getDate()
+
+    const tableHeaderData = []
+
+    const nextWeekend: number = (7 - date.getDay()) + date.getDate()
+    const lastWeekend: number = date.getDate() - (7 - date.getDay()) - 1
+
+    for (let i = day - 4; i <= day + 4; i++) {
+
+        const data = {
+            name: i.toString(),
+            width: "70px",
+            wrap: true,
+            cell: (row: studentProps) => (
+                <div>{
+                    lastWeekend !== i && nextWeekend !== i ? i <= day
+                            ?
+                            !findAtt(row, att, i)
+                                ?
+                                <><PlusCircleIcon width={25} className={'cursor-pointer text-green-500'}
+                                                  onClick={() => addAtt(row)}/></>
+                                :
+                                <><MinusCircleIcon width={25} className={'cursor-pointer text-red-500'}
+                                                   onClick={() => addAtt(row)}/></>
+                            :
+                            <XCircleIcon width={25}
+                                         className={"cursor-not-allowed text-gray-500"}/>
+                        : <XCircleIcon width={25}
+                                       className={"cursor-not-allowed text-yellow-500"}/>
+                }
+                </div>
+            )
+        }
+
+        tableHeaderData.push(data)
+    }
+    return tableHeaderData;
 }

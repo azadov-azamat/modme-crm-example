@@ -1,11 +1,11 @@
-import {lanesDataProps, leadDataProps} from "../../interface/lids/lids.interface.ts";
+import {lanesDataProps, leadDataProps} from "../../interface/leads/leads.interface.ts";
 import {DndContext, rectIntersection} from "@dnd-kit/core";
 import KanbanLane from "./components/kanban-lane";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {addNewLeadData, deleteLeadData} from "../../redux/reducers/variable";
 
-export default function Lids() {
+export default function Leads() {
 
     const dispatch = useDispatch()
     const {leadData} = useSelector((state: RootState) => state.variables)

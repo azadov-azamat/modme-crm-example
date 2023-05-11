@@ -1,6 +1,6 @@
 import {useDroppable} from "@dnd-kit/core";
 import KanbanCard from "./kanban-card";
-import {lanesDataProps, leadDataProps} from "../../../interface/lids/lids.interface.ts";
+import {lanesDataProps, leadDataProps} from "../../../interface/leads/leads.interface.ts";
 import {ListBulletIcon, PlusCircleIcon} from "@heroicons/react/24/outline";
 import {Button, IconButton, Input} from "@material-tailwind/react";
 import {useState} from "react";
